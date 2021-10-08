@@ -1,0 +1,18 @@
+.page_list {
+}
+.page {
+  padding-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.lang_changer {
+  display: flex;
+}
+.lang_changer li {
+  padding: 5px;
+  cursor: pointer;
+}
+.active {
+  box-shadow: 0px 1px black;
+}
