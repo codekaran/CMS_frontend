@@ -38,7 +38,8 @@ class Home extends Component {
 
   handleSubmit = (page, lang) => {
     fetch(
-      `https://webfixxers-cms.herokuapp.com/updateData?page=${page}&lang=${lang}`,
+      // `https://webfixxers-cms.herokuapp.com/updateData?page=${page}&lang=${lang}`,
+      `http://localhost:8000/updateData?page=${page}&lang=${lang}`,
       {
         method: "POST",
         headers: {

@@ -13,12 +13,13 @@ class App extends Component {
   }
 
   getData = async (page, lang) => {
-    this.setState({ shouldLoad: true });
+    this.setState({ shouldLoad: true, lang: "nl" });
     console.log("getting the data");
     let data = {};
     try {
       let res = await fetch(
-        `https://webfixxers-cms.herokuapp.com/getData?page=${page}&lang=${lang}`
+        // `https://webfixxers-cms.herokuapp.com/getData?page=${page}&lang=${lang}`
+        `http://localhost:8000/getData?page=${page}&lang=${lang}`
       );
       res = await res.json();
       data = JSON.parse(res.data);
