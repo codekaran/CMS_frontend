@@ -11,8 +11,8 @@ class Nav extends Component {
     let data = {};
     try {
       let res = await fetch(
-        // "https://webfixxers-cms.herokuapp.com/getPageList?lang=en"
-        "http://localhost:8000/getPageList?lang=" + this.state.lang
+        // "http://localhost:8000/getPageList?lang=" + this.state.lang
+        "http://161.35.41.189/getPageList?lang=" + this.state.lang
       );
       res = await res.json();
       data = res.data;
