@@ -19,7 +19,7 @@ class App extends Component {
     try {
       let res = await fetch(
         // `https://webfixxers-cms.herokuapp.com/getData?page=${page}&lang=${lang}`
-        `http://localhost:8000/getData?page=${page}&lang=${lang}`
+        `http://161.35.41.189/getData?page=${page}&lang=${lang}`
       );
       res = await res.json();
       data = JSON.parse(res.data);
