@@ -5,14 +5,20 @@ class Nav extends Component {
   state = { pageList: [], page: "home", lang: "nl" };
   componentDidMount() {
     this.getData();
+    console.log(window.location.pathname);
   }
 
   getData = async () => {
     let data = {};
     try {
       let res = await fetch(
+        // 161.35.41.189
         // "http://localhost:8000/getPageList?lang=" + this.state.lang
-        "http://161.35.41.189/getPageList?lang=" + this.state.lang
+        `http://161.35.41.189/getPageList?website=${
+          window.location.pathname === "/"
+            ? "webfixxers"
+            : window.location.pathname
+        }&lang=${this.state.lang}`
       );
       res = await res.json();
       data = res.data;

@@ -10,17 +10,21 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    this.setState({ data: this.props.text });
-    console.log(this.props);
-  }
-  componentWillReceiveProps(nextProps) {
-    console.log("got the props", nextProps);
     this.setState({
-      data: nextProps.text,
-      page: nextProps.page,
-      lang: nextProps.lang,
+      data: this.props.text,
+      lang: this.props.lang,
+      page: this.props.page,
     });
+    console.log(this.state);
   }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log("got the props", nextProps);
+  //   this.setState({
+  //     data: nextProps.text,
+  //     page: nextProps.page,
+  //     lang: nextProps.lang,
+  //   });
+  // }
 
   handleChange = (id, data) => {
     let { sections } = this.state.data;
@@ -32,14 +36,21 @@ class Home extends Component {
         ...prevState.data,
         sections: sections,
       },
+      // page: this.props.page,
+      // lan
     }));
     console.log(this.state);
   };
 
   handleSubmit = (page, lang) => {
+    console.log("submitting for page ", page);
     fetch(
       // `https://webfixxers-cms.herokuapp.com/updateData?page=${page}&lang=${lang}`,
-      `http://161.35.41.189/updateData?page=${page}&lang=${lang}`,
+      `http://161.35.41.189/updateData?page=${page}&website=${
+        window.location.pathname === "/"
+          ? "webfixxers"
+          : window.location.pathname
+      }&lang=${lang}`,
       {
         method: "POST",
         headers: {
