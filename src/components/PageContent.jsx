@@ -17,14 +17,14 @@ class Home extends Component {
     });
     console.log(this.state);
   }
-  // componentWillReceiveProps(nextProps) {
-  //   console.log("got the props", nextProps);
-  //   this.setState({
-  //     data: nextProps.text,
-  //     page: nextProps.page,
-  //     lang: nextProps.lang,
-  //   });
-  // }
+  componentWillReceiveProps(nextProps) {
+    console.log("got the props", nextProps);
+    this.setState({
+      data: nextProps.text,
+      page: nextProps.page,
+      lang: nextProps.lang,
+    });
+  }
 
   handleChange = (id, data) => {
     let { sections } = this.state.data;
@@ -45,7 +45,6 @@ class Home extends Component {
   handleSubmit = (page, lang) => {
     console.log("submitting for page ", page);
     fetch(
-      // `https://webfixxers-cms.herokuapp.com/updateData?page=${page}&lang=${lang}`,
       `http://161.35.41.189/updateData?page=${page}&website=${
         window.location.pathname === "/"
           ? "webfixxers"

@@ -14,11 +14,10 @@ class App extends Component {
 
   getData = async (page, lang) => {
     this.setState({ shouldLoad: true, lang: "nl" });
-    console.log("getting the data");
+    console.log("getting the data ", page, " lang ", lang);
     let data = {};
     try {
       let res = await fetch(
-        // `https://webfixxers-cms.herokuapp.com/getData?page=${page}&lang=${lang}`
         `http://161.35.41.189/getData?page=${page}&website=${
           window.location.pathname === "/"
             ? "webfixxers"

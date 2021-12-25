@@ -2,7 +2,7 @@ import { Component } from "react";
 import "./Nav.css";
 
 class Nav extends Component {
-  state = { pageList: [], page: "home", lang: "nl" };
+  state = { pageList: [], langList: [], page: "home", lang: "nl" };
   componentDidMount() {
     this.getData();
     console.log(window.location.pathname);
@@ -13,7 +13,6 @@ class Nav extends Component {
     try {
       let res = await fetch(
         // 161.35.41.189
-        // "http://localhost:8000/getPageList?lang=" + this.state.lang
         `http://161.35.41.189/getPageList?website=${
           window.location.pathname === "/"
             ? "webfixxers"
@@ -25,7 +24,7 @@ class Nav extends Component {
     } catch (err) {
       console.log(err);
     }
-    this.setState({ pageList: data });
+    this.setState({ pageList: data.pages, langList: data.langs });
     console.log(this.state);
   };
 
@@ -58,7 +57,22 @@ class Nav extends Component {
             })}
           </ul>
           <ul className="lang_changer">
-            <li
+            {this.state.langList.map((val) => {
+              return (
+                <li
+                  key={val}
+                  className={this.state.lang === val ? "active" : "inactive"}
+                  onClick={() => {
+                    this.props.changeLang(val.toUpperCase());
+                    this.props.getData(this.state.page, val);
+                    this.updateLangClass(val);
+                  }}
+                >
+                  {val}
+                </li>
+              );
+            })}
+            {/* <li
               className={this.state.lang === "en" ? "active" : "inactive"}
               onClick={() => {
                 this.props.changeLang("EN");
@@ -77,7 +91,7 @@ class Nav extends Component {
               }}
             >
               NL
-            </li>
+            </li> */}
           </ul>
         </nav>
       );
