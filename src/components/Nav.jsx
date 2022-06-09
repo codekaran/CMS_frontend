@@ -12,7 +12,6 @@ class Nav extends Component {
     let data = {};
     try {
       let res = await fetch(
-        // 161.35.41.189
         `http://161.35.41.189/getPageList?website=${
           window.location.pathname === "/"
             ? "webfixxers"

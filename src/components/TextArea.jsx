@@ -10,7 +10,7 @@ const TextArea = (props) => {
       <CKEditor
         editor={ClassicEditor}
         data={props.text}
-        onChange={(event, editor) => {
+        onBlur={(event, editor) => {
           props.func(props.id, editor.getData());
         }}
       ></CKEditor>

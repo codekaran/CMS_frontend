@@ -26,9 +26,26 @@ class Home extends Component {
     });
   }
 
+  replaceTags = (data) => {
+    console.log("inside replace");
+    let temp = data;
+    temp = temp.replace(/<p>/g, "").replace(/<\/p>/g, "");
+    temp = temp.replace(/<h1>/g, "").replace(/<\/h1>/g, "");
+    temp = temp.replace(/<h2>/g, "").replace(/<\/h2>/g, "");
+    temp = temp.replace(/<h3>/g, "").replace(/<\/h3>/g, "");
+    temp = temp.replace(/<h4>/g, "").replace(/<\/h4>/g, "");
+    temp = temp.replace(/<h5>/g, "").replace(/<\/h5>/g, "");
+    temp = temp.replace(/<h6>/g, "").replace(/<\/h6>/g, "");
+    temp = temp.replace(/&nbsp;/g, "<br />");
+    console.log(temp);
+    return temp;
+  };
+
   handleChange = (id, data) => {
     let { sections } = this.state.data;
     console.log(id, data);
+    data = this.replaceTags(data);
+    console.log("test : ", data);
     sections[id.index][id.field] = data;
     console.log(sections);
     this.setState((prevState) => ({
